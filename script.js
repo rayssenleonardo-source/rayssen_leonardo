@@ -67,7 +67,7 @@ const textElement = document.querySelector(".typing-effect");
     const phrases = [
       "Criação de Logos",
       "Edição de Vídeos",
-      "Motion Designer",
+      "Motion Design",
       "Criação de Identidade Visual",
       "Edição de Imagens"
     ];
@@ -86,7 +86,7 @@ const textElement = document.querySelector(".typing-effect");
       if (isDeleting) {
         textElement.textContent = currentPhrase.substring(0, charIndex - 1);
         charIndex--;
-        typeSpeed = 50; // Apaga mais rápido
+        typeSpeed = 70; // Apaga mais rápido
       } else {
         textElement.textContent = currentPhrase.substring(0, charIndex + 1);
         charIndex++;
@@ -101,7 +101,7 @@ const textElement = document.querySelector(".typing-effect");
         // Terminou de apagar tudo
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        typeSpeed = 500; // Pausa antes de começar a próxima
+        typeSpeed = 100; // Pausa antes de começar a próxima
       }
 
       setTimeout(type, typeSpeed);
