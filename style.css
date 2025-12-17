@@ -29,7 +29,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  
+  section {
+  scroll-margin-top: 80px; /* compensa os ~60px do header fixo */
+}
+
   /* Novo fundo com degradê + manchas de cor */
   background:
     radial-gradient(circle at 0% 0%, rgba(209, 175, 110, 0.14) 0, transparent 45%),   /* brilho dourado canto sup. esq. */
@@ -46,9 +49,37 @@ header {
   position: fixed;
   top: 0;
   z-index: 1000;
-  background: rgba(2, 6, 23, 0.9);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 15px rgba(15, 23, 42, 0.85);
+
+  /* totalmente transparente, sem blur nem sombra */
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+
+  /* opcional: evita que algo atrás “capture” clique */
+  pointer-events: none;
+}
+
+#navbar {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+
+  /* reativa os cliques dentro do navbar */
+  pointer-events: auto;
+}
+#navbar a {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: 0.25s ease;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.55); /* opcional */
 }
 
 #navbar {
@@ -786,4 +817,59 @@ footer {
     width: 100%;
     max-width: 100%;
   }
+}
+/* ====== ANIMAÇÃO DE ENTRADA DAS SEÇÕES (SCROLL) ====== */
+
+/* aplicado via JS em todas as <section>, exceto o hero */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* entrada suave do hero ao carregar a página */
+.welcome-hero {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroEnter 0.8s ease-out 0.15s forwards;
+}
+
+@keyframes heroEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ========== Animação de entrada das seções (scroll) ========== */
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== Animação leve do hero ao carregar ========== */
+
+#welcome-section .welcome-hero {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+
+#welcome-section .welcome-hero.hero-enter {
+  opacity: 1;
+  transform: translateY(0);
 }
