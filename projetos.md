@@ -1,0 +1,6 @@
+[arroma_cafe.pdf](https://github.com/user-attachments/files/24222209/arroma_cafe.pdf)
+[oudoro.pdf](https://github.com/user-attachments/files/24222214/oudoro.pdf)
+[vs.pdf](https://github.com/user-attachments/files/24222215/vs.pdf)
+[alessandra_gaio.pdf](https://github.com/user-attachments/files/24222238/alessandra_gaio.pdf)
+[rl_lab.pdf](https://github.com/user-attachments/files/24222273/rl_lab.pdf)
+[zentraq.pdf](https://github.com/user-attachments/files/24222415/zentraq.pdf)
