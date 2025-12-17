@@ -111,13 +111,33 @@ header {
 }
 
 /* BLOCO DA FOTO */
+/* BLOCO DA FOTO COM ANIMAÇÃO */
 .welcome-photo {
   flex: 0 0 260px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  isolation: isolate; /* garante que o glow fique atrás da foto */
 }
 
+/* halo suave atrás da foto */
+.welcome-photo::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 0%, rgba(250, 204, 21, 0.40) 0, transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.35) 0, transparent 60%);
+  opacity: 0;
+  filter: blur(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: -1;
+}
+
+/* foto em si */
 .welcome-photo img {
   width: 230px;
   height: 230px;
@@ -127,6 +147,27 @@ header {
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(15, 23, 42, 0.9);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  transform-origin: center;
+}
+
+/* efeito ao passar o mouse */
+.welcome-photo:hover img {
+  transform: translateY(-6px) scale(1.04);
+  border-color: var(--accent-strong);
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(15, 23, 42, 1);
+}
+
+.welcome-photo:hover::before {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 }
 
 /* TEXTO AO LADO DA FOTO */
@@ -283,12 +324,12 @@ header {
   color: var(--text-main);
 }
 
-/* ================== PROJETOS ================== */
+/* ================== PROJETOS – CASES DE IDENTIDADE ================== */
+
 #projects {
   width: 100%;
   padding: 60px 0 50px;
-  /* deixa o fundo principal aparecer (gradiente do body) */
-  background: transparent;
+  background: transparent; /* deixa o gradiente do body aparecer */
 }
 
 #projects h2 {
@@ -297,63 +338,137 @@ header {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  margin-bottom: 8px;
 }
 
 .subtitle {
   text-align: center;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   font-size: 0.95rem;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 2rem;
   width: 80%;
   max-width: 1200px;
   margin: 0 auto 4rem auto;
 }
 
+/* Card base */
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  transition: 0.3s;
   display: flex;
   flex-direction: column;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
 }
 
 .project-card:hover {
+  transform: translateY(-6px);
   border-color: var(--accent);
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.9);
-  transform: translateY(-6px);
 }
 
-/* Imagem do projeto */
-.project-img {
-  width: 100%;
-  height: 180px;
-  background-color: #111827;
+/* Faixa de meta (tipo + ano) */
+.project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  color: #4b5563;
-  font-size: 3rem;
-  border-bottom: 1px solid #1f2933;
+  padding: 14px 20px 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
 }
 
-.project-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-soft);
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--accent-strong);
+  font-weight: 600;
 }
 
+.project-year {
+  opacity: 0.8;
+}
+
+/* Thumbnail – agora com FOTO como background */
+.project-thumbnail {
+  height: 160px;
+  margin: 16px 16px 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px 16px;
+  color: #f9fafb;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay de brilho/vidro por cima da foto */
+.project-thumbnail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 40%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* ========== Thumb por projeto ==========
+   Troque as URLs abaixo pelas imagens reais
+   (por exemplo, JPG/PNG que você subir no GitHub)
+*/
+
+.thumb-cafeteria {
+  background-image: url("https://github.com/user-attachments/assets/8701b180-2aab-4a1c-878c-f04e2c108e6f");
+}
+
+.thumb-alessandra {
+  background-image: url("https://github.com/user-attachments/assets/c530fa8c-fd7c-4ed8-80b7-f7096fa6a9d0");
+}
+
+.thumb-rl {
+  background-image: url("https://github.com/user-attachments/assets/151eb1af-acff-407d-9e81-1231b45356b3");
+}
+
+.thumb-vs {
+  background-image: url("https://github.com/user-attachments/assets/df457822-4f11-4586-805a-c5ec6ee91b78");
+}
+
+.thumb-oudoro {
+  background-image: url("https://github.com/user-attachments/assets/8f239f58-32b2-4f6f-92bb-475886e8783e");
+}
+
+.thumb-zentraq {
+  background-image: url("https://github.com/user-attachments/assets/5627f397-1106-49b4-ba0e-f6ab37d60fc0");
+}
+
+/* Conteúdo do card */
 .project-info {
-  padding: 20px;
+  padding: 16px 20px 20px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -361,53 +476,73 @@ header {
 
 .project-info h3 {
   color: var(--accent-strong);
-  margin: 0 0 10px 0;
-  font-size: 1.3rem;
+  margin: 4px 0 10px 0;
+  font-size: 1.2rem;
 }
 
 .project-info p {
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   flex-grow: 1;
+  line-height: 1.6;
 }
 
+/* Tags */
 .project-tags {
-  margin-top: 15px;
+  margin-top: 12px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .tag {
   font-size: 0.75rem;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.95);
   color: var(--accent);
   padding: 4px 9px;
   border-radius: 999px;
   border: 1px solid var(--accent-soft);
 }
 
-/* Links do projeto */
+/* Links */
 .project-links {
-  margin-top: 20px;
+  margin-top: 16px;
   display: flex;
   justify-content: flex-start;
-  gap: 15px;
+  gap: 12px;
 }
 
 .project-links a {
   text-decoration: none;
   color: var(--text-main);
   font-size: 0.9rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
-  transition: 0.2s;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.85);
+  transition: 0.2s ease;
+}
+
+.project-links a i {
+  color: #f97373; /* ícone PDF em vermelho suave (pode ajustar) */
 }
 
 .project-links a:hover {
-  color: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  box-shadow: 0 0 18px rgba(209, 175, 110, 0.6);
 }
+
+/* Responsivo projetos */
+@media (max-width: 600px) {
+  .projects-grid {
+    width: 90%;
+  }
+}
+
 
 /* ================== CONTATO ================== */
 #contact {
@@ -580,6 +715,7 @@ footer {
     transition: none;
   }
 }
+
 /* ===================== FORMAÇÃO ===================== */
 
 #formacao {
