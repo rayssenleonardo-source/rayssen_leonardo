@@ -1,4 +1,4 @@
-/* ================== BASE ================== */
+/* ================== BASE ================== */ 
 * {
   box-sizing: border-box;
 }
@@ -110,7 +110,6 @@ header {
   gap: 40px;
 }
 
-/* BLOCO DA FOTO */
 /* BLOCO DA FOTO COM ANIMAÇÃO */
 .welcome-photo {
   flex: 0 0 260px;
@@ -166,8 +165,6 @@ header {
 .welcome-photo:hover::before {
   opacity: 1;
   transform: scale(1.05);
-}
-
 }
 
 /* TEXTO AO LADO DA FOTO */
@@ -437,11 +434,7 @@ header {
   pointer-events: none;
 }
 
-/* ========== Thumb por projeto ==========
-   Troque as URLs abaixo pelas imagens reais
-   (por exemplo, JPG/PNG que você subir no GitHub)
-*/
-
+/* ========== Thumb por projeto ========== */
 .thumb-cafeteria {
   background-image: url("https://github.com/user-attachments/assets/8701b180-2aab-4a1c-878c-f04e2c108e6f");
 }
