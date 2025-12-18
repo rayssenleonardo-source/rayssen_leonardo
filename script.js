@@ -1,15 +1,14 @@
 // script.js
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   /* ================== TYPING EFFECT ================== */
-  const textElement = document.querySelector('.typing-effect');
+  const textElement = document.querySelector(".typing-effect");
 
   const phrases = [
-    'Identidade Visual',
-    'Design Gráfico',
-    'Edição de Vídeo',
-    'Motion Design',
-    'Direção de Arte'
+    "Identidade Visual",
+    "Design Gráfico",
+    "Edição de Vídeo",
+    "Motion Design",
+    "Direção de Arte",
   ];
 
   let phraseIndex = 0;
@@ -33,14 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!isDeleting && charIndex === currentPhrase.length) {
-      // terminou de escrever
       isDeleting = true;
-      typeSpeed = 2000; // pausa com a frase completa
+      typeSpeed = 2000;
     } else if (isDeleting && charIndex === 0) {
-      // terminou de apagar
       isDeleting = false;
       phraseIndex = (phraseIndex + 1) % phrases.length;
-      typeSpeed = 500; // pausa antes da próxima
+      typeSpeed = 500;
     }
 
     setTimeout(type, typeSpeed);
@@ -51,39 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================== ANIMAÇÃO ENTRE SEÇÕES ================== */
-
-  // Pega todas as sections, menos o hero
-  const sections = Array.from(document.querySelectorAll('section')).filter(
-    (sec) => sec.id && sec.id !== 'welcome-section'
+  const sections = Array.from(document.querySelectorAll("section")).filter(
+    (sec) => sec.id && sec.id !== "welcome-section"
   );
 
-  // Classe base para começar "escondida"
-  sections.forEach((sec) => sec.classList.add('reveal-section'));
+  sections.forEach((sec) => sec.classList.add("reveal-section"));
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // entra em cena
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add("is-visible");
         } else {
-          // sai de cena -> permite reanimar quando voltar
-          entry.target.classList.remove('is-visible');
+          entry.target.classList.remove("is-visible");
         }
       });
     },
     {
-      threshold: 0.25
+      threshold: 0.25,
     }
   );
 
   sections.forEach((sec) => observer.observe(sec));
 
   /* ================== ANIMAÇÃO LEVE NO HERO AO CARREGAR ================== */
-
-  const hero = document.querySelector('#welcome-section .welcome-hero');
+  const hero = document.querySelector("#welcome-section .welcome-hero");
   if (hero) {
-    // adiciona uma classe que o CSS vai animar
-    hero.classList.add('hero-enter');
+    hero.classList.add("hero-enter");
   }
 });
