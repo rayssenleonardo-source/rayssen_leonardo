@@ -103,25 +103,25 @@ header {
   box-shadow: 0 0 18px rgba(209, 175, 110, 0.45);
 }
 
-/* NAV – ajuste para mobile */
+/* NAV – ajuste para mobile (mantém tudo em uma linha) */
 @media (max-width: 720px) {
   #navbar {
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-right: 10px;
-    padding-left: 10px;
+    justify-content: space-around;
+    flex-wrap: nowrap;      /* não deixa quebrar em várias linhas */
+    padding-right: 8px;
+    padding-left: 8px;
   }
 
   #navbar ul {
-    margin: 4px 4px;
+    margin: 0 2px;
   }
 
   #navbar a {
-    font-size: 0.85rem;
-    padding: 4px 8px;
+    font-size: 0.78rem;
+    padding: 4px 6px;
+    letter-spacing: 0.02em;
   }
 }
-
 /* ================== WELCOME / HERO ================== */
 #welcome-section {
   width: 100%;
@@ -1039,17 +1039,35 @@ footer {
 }
 
 /* ================== RESPONSIVIDADE GLOBAL EXTRA ================== */
-@media (max-width: 600px) {
+/* NAV – comportamento em telas pequenas: scroll horizontal */
+@media (max-width: 720px) {
   #navbar {
-    justify-content: center;
+    justify-content: flex-start;     /* começa da esquerda */
+    flex-wrap: nowrap;               /* impede quebrar linha */
+    gap: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    overflow-x: auto;                /* ativa scroll horizontal */
+    -webkit-overflow-scrolling: touch; /* rolagem suave no iOS */
   }
 
-  #welcome-section h1 {
-    font-size: 2rem;
+  /* some com a barra de rolagem visual */
+  #navbar::-webkit-scrollbar {
+    display: none;
+  }
+  #navbar {
+    scrollbar-width: none;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
+  #navbar ul {
+    margin: 0 4px;
+  }
+
+  #navbar a {
+    font-size: 0.80rem;
+    padding: 4px 8px;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -1065,4 +1083,10 @@ footer {
   .button-div > a {
     transition: none;
   }
+}
+/* Garante que a seção de projetos nunca fique invisível
+   mesmo se a animação de scroll bug ar no Safari mobile */
+#projects.reveal-section {
+  opacity: 1;
+  transform: none;
 }
