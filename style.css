@@ -18,7 +18,7 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 body {
@@ -30,27 +30,15 @@ body {
   flex-direction: column;
   min-height: 100vh;
 
-  /* fundo com degradê + manchas de cor */
+  /* Fundo com degradê + manchas de cor */
   background:
-    radial-gradient(
-      circle at 0% 0%,
-      rgba(209, 175, 110, 0.14) 0,
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 100% 100%,
-      rgba(56, 189, 248, 0.16) 0,
-      transparent 45%
-    ),
+    radial-gradient(circle at 0% 0%, rgba(209, 175, 110, 0.14) 0, transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.16) 0, transparent 45%),
     linear-gradient(135deg, #020617 0%, #020617 45%, #000000 100%);
   color: #e5e7eb;
 }
 
-main {
-  flex: 1;
-}
-
-/* compensa o header fixo no scroll via âncora */
+/* Compensa o header fixo no scroll dos anchors */
 section {
   scroll-margin-top: 80px;
 }
@@ -67,8 +55,6 @@ header {
   background: transparent;
   backdrop-filter: none;
   box-shadow: none;
-
-  pointer-events: none;
 }
 
 #navbar {
@@ -77,8 +63,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
-
-  pointer-events: auto;
+  flex-wrap: wrap; /* permite quebrar linha no mobile */
 }
 
 #navbar ul {
@@ -112,7 +97,7 @@ header {
   box-shadow: 0 0 18px rgba(209, 175, 110, 0.45);
 }
 
-/* ================== HERO COM FOTO ================== */
+/* ================== WELCOME / HERO ================== */
 #welcome-section {
   width: 100%;
   min-height: calc(100vh - 60px);
@@ -130,18 +115,6 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-
-  /* estado inicial para animação no load */
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out;
-}
-
-.welcome-hero.hero-enter {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* BLOCO DA FOTO COM ANIMAÇÃO */
@@ -154,6 +127,7 @@ header {
   isolation: isolate;
 }
 
+/* halo suave atrás da foto */
 .welcome-photo::before {
   content: "";
   position: absolute;
@@ -161,22 +135,15 @@ header {
   height: 260px;
   border-radius: 50%;
   background:
-    radial-gradient(
-      circle at 30% 0%,
-      rgba(250, 204, 21, 0.4) 0,
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 100% 100%,
-      rgba(56, 189, 248, 0.35) 0,
-      transparent 60%
-    );
+    radial-gradient(circle at 30% 0%, rgba(250, 204, 21, 0.40) 0, transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.35) 0, transparent 60%);
   opacity: 0;
   filter: blur(12px);
   transition: opacity 0.35s ease, transform 0.35s ease;
   z-index: -1;
 }
 
+/* foto em si */
 .welcome-photo img {
   width: 230px;
   height: 230px;
@@ -193,6 +160,7 @@ header {
   transform-origin: center;
 }
 
+/* efeito ao passar o mouse */
 .welcome-photo:hover img {
   transform: translateY(-6px) scale(1.04);
   border-color: var(--accent-strong);
@@ -206,7 +174,7 @@ header {
   transform: scale(1.05);
 }
 
-/* TEXTO DO HERO */
+/* TEXTO AO LADO DA FOTO */
 .welcome-text {
   flex: 1;
   text-align: left;
@@ -227,7 +195,7 @@ header {
   margin: 0;
 }
 
-/* cursor do typing */
+/* Cursor da animação */
 .cursor {
   font-weight: 700;
   color: var(--accent);
@@ -235,13 +203,8 @@ header {
 }
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
 }
 
 /* ================== SOBRE ================== */
@@ -280,7 +243,7 @@ header {
   color: var(--text-muted);
 }
 
-/* ================== PROCESSO DE TRABALHO ================== */
+/* ================== PROCESSO ================== */
 #processo {
   padding: 60px 20px;
   display: flex;
@@ -334,11 +297,9 @@ header {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 0 0,
-    rgba(209, 175, 110, 0.18) 0,
-    transparent 55%
-  );
+  background: radial-gradient(circle at 0 0,
+              rgba(209, 175, 110, 0.18) 0,
+              transparent 55%);
   opacity: 0;
   transition: opacity 0.25s ease;
   pointer-events: none;
@@ -384,7 +345,7 @@ header {
   line-height: 1.6;
 }
 
-/* ================== TIMELINE (EXPERIÊNCIA) ================== */
+/* ================== EXPERIÊNCIA ================== */
 .timeline {
   max-width: 800px;
   margin: 0 auto;
@@ -398,11 +359,7 @@ header {
   padding: 20px 20px 18px;
   border-radius: 12px;
   position: relative;
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s,
-    border-color 0.3s,
-    background 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background 0.3s;
   border: 1px solid var(--border-card);
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
 }
@@ -415,7 +372,7 @@ header {
 }
 
 .job-card::before {
-  content: "";
+  content: '';
   position: absolute;
   left: -26px;
   top: 20px;
@@ -448,7 +405,7 @@ header {
   color: var(--text-muted);
 }
 
-/* ===================== FORMAÇÃO ===================== */
+/* ================== FORMAÇÃO ================== */
 #formacao {
   padding: 50px 20px 60px;
   text-align: center;
@@ -473,11 +430,9 @@ header {
 }
 
 .edu-card {
-  background: radial-gradient(
-    circle at top left,
-    rgba(209, 175, 110, 0.08) 0,
-    rgba(15, 23, 42, 0.96) 40%
-  );
+  background: radial-gradient(circle at top left,
+              rgba(209, 175, 110, 0.08) 0,
+              rgba(15, 23, 42, 0.96) 40%);
   border-radius: 14px;
   padding: 22px 20px;
   min-width: 260px;
@@ -487,10 +442,7 @@ header {
     0 18px 40px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(15, 23, 42, 0.9);
   text-align: left;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .edu-card:hover {
@@ -562,22 +514,21 @@ header {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
 }
 
+/* ícones SVG dos softwares */
 .skill-icon {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
+  width: 48px;
+  height: 48px;
   margin-bottom: 10px;
-  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
+  display: block;
 }
 
 .skill-card h3 {
   margin: 5px 0 0 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-main);
-  text-align: center;
 }
 
-/* ================== SEÇÃO DE SERVIÇOS ================== */
+/* ================== SERVIÇOS ================== */
 .services-section {
   padding: 60px 20px 70px;
   text-align: center;
@@ -617,10 +568,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .service-card:hover {
@@ -671,7 +619,7 @@ header {
   line-height: 1.5;
 }
 
-/* ================== PROJETOS – CASES ================== */
+/* ================== PROJETOS ================== */
 #projects {
   width: 100%;
   padding: 60px 0 50px;
@@ -713,10 +661,7 @@ header {
   display: flex;
   flex-direction: column;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
 }
 
@@ -750,6 +695,7 @@ header {
   opacity: 0.8;
 }
 
+/* Thumbnail com foto */
 .project-thumbnail {
   height: 160px;
   margin: 16px 16px 0;
@@ -769,6 +715,7 @@ header {
   background-repeat: no-repeat;
 }
 
+/* Overlay de brilho */
 .project-thumbnail::before {
   content: "";
   position: absolute;
@@ -782,7 +729,7 @@ header {
   pointer-events: none;
 }
 
-/* thumbs com foto real */
+/* thumbs com imagens */
 .thumb-cafeteria {
   background-image: url("https://github.com/user-attachments/assets/8701b180-2aab-4a1c-878c-f04e2c108e6f");
 }
@@ -874,7 +821,7 @@ header {
   box-shadow: 0 0 18px rgba(209, 175, 110, 0.6);
 }
 
-/* ================== CONTATO & FOOTER ================== */
+/* ================== CONTATO ================== */
 #contact {
   min-height: 60vh;
   display: flex;
@@ -914,6 +861,7 @@ header {
   text-shadow: 0 0 18px rgba(209, 175, 110, 0.6);
 }
 
+/* Botão padrão */
 .button-div {
   display: flex;
   justify-content: center;
@@ -940,6 +888,7 @@ header {
   color: #020617;
 }
 
+/* Separador / Footer */
 hr {
   border: 0;
   border-top: 1px solid var(--accent-soft);
@@ -955,7 +904,23 @@ footer {
   font-size: 0.8rem;
 }
 
-/* ================== ANIMAÇÃO SCROLL SECTIONS ================== */
+/* ================== ANIMAÇÕES GERAIS ================== */
+
+/* animação leve do hero ao carregar */
+#welcome-section .welcome-hero {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+
+#welcome-section .welcome-hero.hero-enter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* animação de entrada das seções no scroll */
 .reveal-section {
   opacity: 0;
   transform: translateY(40px);
@@ -1001,9 +966,10 @@ footer {
 }
 
 @media (max-width: 600px) {
+  /* navbar em dispositivos menores */
   #navbar {
     justify-content: center;
-    padding-right: 0;
+    padding-right: 10px;
   }
 
   #navbar ul {
@@ -1011,7 +977,7 @@ footer {
   }
 
   #navbar a {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     padding: 4px 8px;
   }
 
@@ -1021,6 +987,10 @@ footer {
 
   .process-subtitle {
     margin-bottom: 30px;
+  }
+
+  .services-section {
+    padding: 50px 16px 60px;
   }
 
   #formacao {
@@ -1034,27 +1004,29 @@ footer {
 
   .projects-grid {
     width: 90%;
-    grid-template-columns: 1fr;
   }
 
-  .services-section {
-    padding: 50px 16px 60px;
+  /* Desativa o efeito de revelar no scroll no mobile
+     para garantir que nada “suma” */
+  .reveal-section {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
-/* ================== REDUÇÃO DE MOVIMENTO ================== */
+/* ================== TRANSIÇÕES REDUZIDAS ================== */
 @media (prefers-reduced-motion: reduce) {
   .card,
   .project-card,
   .skill-card,
   .job-card,
-  .process-card,
-  .service-card,
+  .modal-overlay,
+  .modal-content,
   #navbar a,
   .button-div > a,
-  .welcome-hero,
-  .reveal-section {
-    transition: none !important;
-    animation: none !important;
+  .process-card,
+  .service-card {
+    transition: none;
+    animation: none;
   }
 }
