@@ -3,7 +3,9 @@
   box-sizing: border-box;
 }
 
-:root {
+/* Tema padrão (dark) + alias quando data-theme="dark" */
+:root,
+:root[data-theme='dark'] {
   --accent: #d1af6e;
   --accent-soft: rgba(209, 175, 110, 0.16);
   --accent-strong: #facc6b;
@@ -12,6 +14,26 @@
   --text-muted: #9ca3af;
   --bg-card: rgba(15, 23, 42, 0.92);
   --border-card: rgba(148, 163, 184, 0.45);
+  --page-bg:
+    radial-gradient(circle at 0% 0%, rgba(209, 175, 110, 0.14) 0, transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.16) 0, transparent 45%),
+    linear-gradient(135deg, #020617 0%, #020617 45%, #000000 100%);
+}
+
+/* Tema claro */
+:root[data-theme='light'] {
+  --accent: #b98a3f;
+  --accent-soft: rgba(185, 138, 63, 0.18);
+  --accent-strong: #b98a3f;
+  --accent-alt: #2563eb;
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --bg-card: rgba(249, 250, 251, 0.96);
+  --border-card: rgba(209, 213, 219, 0.9);
+  --page-bg:
+    radial-gradient(circle at 0% 0%, rgba(250, 204, 21, 0.12) 0, transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.10) 0, transparent 45%),
+    linear-gradient(135deg, #f3f4f6 0%, #f9fafb 40%, #e5e7eb 100%);
 }
 
 html {
@@ -30,13 +52,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
 
-  /* Novo fundo com degradê + manchas de cor */
-  background:
-    radial-gradient(circle at 0% 0%, rgba(209, 175, 110, 0.14) 0, transparent 45%),
-    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.16) 0, transparent 45%),
-    linear-gradient(135deg, #020617 0%, #020617 45%, #000000 100%);
-  
-  color: #e5e7eb; /* cor padrão do texto fora dos cards */
+  background: var(--page-bg);
+  color: var(--text-main);
 }
 
 /* âncoras rolando com compensação do header */
@@ -45,49 +62,45 @@ section {
 }
 
 /* ================== HEADER / NAV ================== */
+/* ================== HEADER / NAV ================== */
+
 header {
-  width: 100%;
-  height: 60px;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
   z-index: 1000;
-
-  /* totalmente transparente */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
   background: transparent;
-  backdrop-filter: none;
-  box-shadow: none;
-
-  /* evita que algo atrás capture clique */
-  pointer-events: none;
 }
 
+/* NAV (desktop por padrão) */
 #navbar {
-  height: 100%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  padding-right: 20px;
-
-  /* reativa os cliques dentro do navbar */
-  pointer-events: auto;
 }
 
 #navbar ul {
   display: flex;
   align-items: center;
-  margin: 0 10px;
-  height: 100%;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 #navbar li {
-  list-style-type: none;
-  padding: 0 10px;
+  margin: 0;
 }
 
 #navbar a {
   color: var(--accent);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.98rem;
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 999px;
@@ -103,29 +116,152 @@ header {
   box-shadow: 0 0 18px rgba(209, 175, 110, 0.45);
 }
 
-/* NAV – ajuste para mobile (mantém tudo em uma linha) */
-@media (max-width: 720px) {
+/* Botão de tema (fica sempre no topo direito) */
+.theme-toggle {
+  margin-left: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-soft);
+  background: var(--bg-card);
+  color: var(--accent-strong);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-toggle i {
+  pointer-events: none;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Botão hambúrguer */
+.menu-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-soft);
+  background: var(--bg-card);
+  color: var(--accent-strong);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent-strong);
+  margin: 2px 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* animação do "X" */
+.menu-toggle.is-open span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* DESKTOP: esconde navbar e mostra só no hover do topo */
+@media (min-width: 721px) {
+  .menu-toggle {
+    display: none;
+  }
+
   #navbar {
-    justify-content: space-around;
-    flex-wrap: nowrap;      /* não deixa quebrar em várias linhas */
-    padding-right: 8px;
-    padding-left: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  header:hover #navbar,
+  #navbar:hover {
+    opacity: 1;
+  }
+}
+
+/* MOBILE: dropdown controlado pelo JS */
+@media (max-width: 720px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  #navbar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 10px 16px 14px;
+    background: var(--bg-card);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   #navbar ul {
-    margin: 0 2px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 4px;
   }
 
   #navbar a {
-    font-size: 0.78rem;
-    padding: 4px 6px;
-    letter-spacing: 0.02em;
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    text-shadow: none;
+  }
+
+  /* quando o JS adiciona .open, o menu aparece */
+  #navbar.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* mantém o botão de tema sempre no topo direito */
+  .theme-toggle {
+    position: fixed;
+    right: 16px;
+    top: 10px;
   }
 }
+
 /* ================== WELCOME / HERO ================== */
 #welcome-section {
   width: 100%;
-  min-height: calc(100vh - 60px); /* 60px do header fixo */
+  min-height: calc(100vh - 60px);
   padding: 80px 20px 40px;
   display: flex;
   align-items: center;
@@ -141,7 +277,6 @@ header {
   justify-content: space-between;
   gap: 40px;
 
-  /* estado inicial para animação de entrada */
   opacity: 0;
   transform: translateY(24px);
   transition:
@@ -149,7 +284,6 @@ header {
     transform 0.7s ease-out;
 }
 
-/* quando o JS adiciona esta classe, o hero entra suave */
 .welcome-hero.hero-enter {
   opacity: 1;
   transform: translateY(0);
@@ -165,7 +299,6 @@ header {
   isolation: isolate;
 }
 
-/* halo suave atrás da foto */
 .welcome-photo::before {
   content: "";
   position: absolute;
@@ -181,7 +314,6 @@ header {
   z-index: -1;
 }
 
-/* foto em si */
 .welcome-photo img {
   width: 230px;
   height: 230px;
@@ -198,7 +330,6 @@ header {
   transform-origin: center;
 }
 
-/* efeito ao passar o mouse */
 .welcome-photo:hover img {
   transform: translateY(-6px) scale(1.04);
   border-color: var(--accent-strong);
@@ -354,7 +485,6 @@ header {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
 }
 
-/* ícones em imagem (Adobe) */
 .skill-icon {
   width: 40px;
   height: 40px;
@@ -403,7 +533,6 @@ header {
   margin: 0 auto 4rem auto;
 }
 
-/* Card base */
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -422,7 +551,6 @@ header {
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.9);
 }
 
-/* Faixa de meta (tipo + ano) */
 .project-meta {
   display: flex;
   justify-content: space-between;
@@ -447,7 +575,6 @@ header {
   opacity: 0.8;
 }
 
-/* Thumbnail – FOTO como background */
 .project-thumbnail {
   height: 160px;
   margin: 16px 16px 0;
@@ -467,7 +594,6 @@ header {
   background-repeat: no-repeat;
 }
 
-/* Overlay de brilho/vidro por cima da foto */
 .project-thumbnail::before {
   content: "";
   position: absolute;
@@ -506,7 +632,6 @@ header {
   background-image: url("https://github.com/user-attachments/assets/5627f397-1106-49b4-ba0e-f6ab37d60fc0");
 }
 
-/* Conteúdo do card */
 .project-info {
   padding: 16px 20px 20px;
   flex-grow: 1;
@@ -527,7 +652,6 @@ header {
   line-height: 1.6;
 }
 
-/* Tags */
 .project-tags {
   margin-top: 12px;
   display: flex;
@@ -544,7 +668,6 @@ header {
   border: 1px solid var(--accent-soft);
 }
 
-/* Links */
 .project-links {
   margin-top: 16px;
   display: flex;
@@ -576,7 +699,6 @@ header {
   box-shadow: 0 0 18px rgba(209, 175, 110, 0.6);
 }
 
-/* Responsivo projetos */
 @media (max-width: 600px) {
   .projects-grid {
     width: 90%;
@@ -666,6 +788,18 @@ footer {
 }
 
 /* ================== TIMELINE (EXPERIÊNCIA) ================== */
+
+#experiencia {
+  padding: 50px 20px;
+}
+
+#experiencia h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--text-main);
+}
+
 .timeline {
   max-width: 800px;
   margin: 0 auto;
@@ -679,16 +813,14 @@ footer {
   padding: 20px 20px 18px;
   border-radius: 12px;
   position: relative;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background 0.3s;
   border: 1px solid var(--border-card);
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
-}
-
-.job-card:hover {
-  transform: translateX(10px);
-  background: rgba(15, 23, 42, 0.98);
-  border-color: var(--accent);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.9);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+  color: var(--text-main);
 }
 
 .job-card::before {
@@ -725,6 +857,39 @@ footer {
   color: var(--text-muted);
 }
 
+.job-card:hover {
+  transform: translateX(10px);
+  background: rgba(15, 23, 42, 0.98);
+  border-color: var(--accent);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.9);
+}
+
+/* LIGHT MODE – cards de experiência */
+:root[data-theme='light'] .job-card,
+body[data-theme='light'] .job-card {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+}
+
+:root[data-theme='light'] .job-card h3,
+body[data-theme='light'] .job-card h3 {
+  color: #b7791f;
+}
+
+:root[data-theme='light'] .job-card h4,
+:root[data-theme='light'] .job-card li,
+body[data-theme='light'] .job-card h4,
+body[data-theme='light'] .job-card li {
+  color: #4b5563;
+}
+
+:root[data-theme='light'] .job-card:hover,
+body[data-theme='light'] .job-card:hover {
+  background: #f9fafb;
+  box-shadow: 0 24px 55px rgba(15, 23, 42, 0.22);
+}
+
 /* ================== PROCESSO DE TRABALHO ================== */
 
 #processo {
@@ -755,14 +920,12 @@ footer {
   line-height: 1.6;
 }
 
-/* Grid das etapas */
 .process-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
 }
 
-/* Card de cada etapa */
 .process-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -778,7 +941,6 @@ footer {
     border-color 0.25s ease;
 }
 
-/* pequeno brilho diagonal no card */
 .process-card::before {
   content: "";
   position: absolute;
@@ -801,7 +963,6 @@ footer {
   opacity: 1;
 }
 
-/* Ícone da etapa */
 .process-icon {
   width: 40px;
   height: 40px;
@@ -819,7 +980,6 @@ footer {
   font-size: 1.2rem;
 }
 
-/* Título e texto */
 .process-card h3 {
   margin: 6px 0 8px;
   font-size: 1.05rem;
@@ -833,7 +993,6 @@ footer {
   line-height: 1.6;
 }
 
-/* Responsivo */
 @media (max-width: 600px) {
   #processo {
     padding: 40px 16px;
@@ -849,7 +1008,7 @@ footer {
 #formacao {
   padding: 50px 20px 60px;
   text-align: center;
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 #formacao h2 {
@@ -857,7 +1016,7 @@ footer {
   margin-bottom: 30px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #f9fafb;
+  color: var(--text-main);
 }
 
 .education-grid {
@@ -912,7 +1071,6 @@ footer {
   font-weight: 600;
 }
 
-/* Ajuste em telas menores */
 @media (max-width: 600px) {
   #formacao {
     padding: 40px 16px 50px;
@@ -923,9 +1081,19 @@ footer {
   }
 }
 
+/* Em desktop, afasta levemente algumas seções */
+@media (min-width: 900px) {
+  #sobre,
+  #formacao,
+  #processo,
+  #experiencia,
+  #contact {
+    margin-top: 80px;
+  }
+}
+
 /* ================== ANIMAÇÃO DE ENTRADA DAS SEÇÕES (SCROLL) ================== */
 
-/* aplicado via JS em todas as <section>, exceto o hero */
 .reveal-section {
   opacity: 0;
   transform: translateY(40px);
@@ -938,7 +1106,13 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-
+/* ===== GARANTE QUE "PROJETOS" NÃO SUMA NO MOBILE ===== */
+@media (max-width: 720px) {
+  #projects.reveal-section {
+    opacity: 1;
+    transform: none;
+  }
+}
 /* ================== SEÇÃO DE SERVIÇOS ================== */
 
 .services-section {
@@ -962,13 +1136,21 @@ footer {
   line-height: 1.7;
 }
 
-.services-grid {
+  .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
-  max-width: 1100px;
+  max-width: 1200px;   /* um pouco maior para caber os 4 cards */
   margin: 0 auto;
 }
+
+/* Desktop: força os 4 cards na mesma linha */
+@media (min-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 
 .service-card {
   background: var(--bg-card);
@@ -1031,43 +1213,199 @@ footer {
   line-height: 1.5;
 }
 
-/* Responsivo serviços */
 @media (max-width: 600px) {
   .services-section {
     padding: 50px 16px 60px;
   }
 }
 
-/* ================== RESPONSIVIDADE GLOBAL EXTRA ================== */
-/* NAV – comportamento em telas pequenas: scroll horizontal */
+/* ================== AJUSTES TEMA CLARO – BADGE + FORMAÇÃO ================== */
+
+/* Badge "IDENTIDADE VISUAL", "TECH" etc. */
+:root[data-theme="light"] .badge,
+body[data-theme="light"] .badge {
+  background: rgba(180, 83, 9, 0.06);
+  color: var(--accent-strong);
+  border-color: rgba(180, 83, 9, 0.28);
+}
+
+/* Seção FORMAÇÃO */
+:root[data-theme="light"] #formacao,
+body[data-theme="light"] #formacao {
+  color: #111827;
+}
+
+:root[data-theme="light"] #formacao h2,
+body[data-theme="light"] #formacao h2 {
+  color: #111827;
+}
+
+/* Card de formação em tema claro */
+:root[data-theme="light"] .edu-card,
+body[data-theme="light"] .edu-card {
+  background: radial-gradient(
+      circle at top left,
+      rgba(180, 83, 9, 0.12) 0,
+      #ffffff 52%
+  );
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+:root[data-theme="light"] .edu-card h3,
+body[data-theme="light"] .edu-card h3 {
+  color: #92400e;
+}
+
+:root[data-theme="light"] .edu-card p,
+body[data-theme="light"] .edu-card p {
+  color: #4b5563;
+}
+
+:root[data-theme="light"] .edu-card p strong,
+body[data-theme="light"] .edu-card p strong {
+  color: #111827;
+}
+
+/* ================== AJUSTE TEMA CLARO – TAGS DOS PROJETOS ================== */
+:root[data-theme="light"] .tag,
+body[data-theme="light"] .tag {
+  background: #f3f4f6;
+  color: #111827;
+  border-color: rgba(15, 23, 42, 0.14);
+}
+
+/* ================== AJUSTE TEMA CLARO – BOTÃO "Ver apresentação" ================== */
+:root[data-theme="light"] .project-links a,
+body[data-theme="light"] .project-links a {
+  background: #f3f4f6;
+  color: #111827;
+  border-color: rgba(15, 23, 42, 0.14);
+}
+
+:root[data-theme="light"] .project-links a:hover,
+body[data-theme="light"] .project-links a:hover {
+  background: #facc6b;
+  color: #111827;
+  border-color: #facc6b;
+}
+
+/* ================== NAV – DESKTOP: ESCONDE E MOSTRA NO HOVER ================== */
+@media (min-width: 900px) {
+  #navbar {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  header:hover #navbar,
+  #navbar:hover {
+    opacity: 1;
+  }
+}
+/* ================== NAV – MOBILE: BOTÃO + DROPDOWN ================== */
 @media (max-width: 720px) {
-  #navbar {
-    justify-content: flex-start;     /* começa da esquerda */
-    flex-wrap: nowrap;               /* impede quebrar linha */
-    gap: 8px;
-    padding-left: 8px;
-    padding-right: 8px;
-
-    overflow-x: auto;                /* ativa scroll horizontal */
-    -webkit-overflow-scrolling: touch; /* rolagem suave no iOS */
+  header {
+    height: 56px;
   }
 
-  /* some com a barra de rolagem visual */
-  #navbar::-webkit-scrollbar {
-    display: none;
+  /* mostra o ícone "hambúrguer" no mobile */
+  .menu-toggle {
+    display: flex;
   }
+
+  /* menu começa escondido */
   #navbar {
-    scrollbar-width: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    padding: 12px 16px 16px;
+    background: var(--bg-card);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* quando o JS adiciona .open, o menu aparece */
+  #navbar.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   #navbar ul {
-    margin: 0 4px;
+    margin: 0;
   }
 
   #navbar a {
-    font-size: 0.80rem;
-    padding: 4px 8px;
-    letter-spacing: 0.02em;
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    text-shadow: none;
+  }
+
+  .theme-toggle {
+    align-self: flex-end;
+    margin-top: 4px;
+  }
+}
+
+/* ================== NAV – MOBILE: BOTÃO + DROPDOWN ================== */
+@media (max-width: 720px) {
+  header {
+    height: 56px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  #navbar {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    padding: 12px 16px 16px;
+    background: var(--bg-card);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  #navbar.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #navbar ul {
+    margin: 0;
+  }
+
+  #navbar a {
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    text-shadow: none;
+  }
+
+  .theme-toggle {
+    align-self: flex-end;
+    margin-top: 4px;
   }
 }
 
@@ -1080,14 +1418,91 @@ footer {
   .modal-overlay,
   .modal-content,
   #navbar a,
-  .button-div > a {
+  .button-div > a,
+  .theme-toggle {
     transition: none;
   }
 }
-/* Garante que a seção de projetos nunca fique invisível
-   mesmo se a animação de scroll bug ar no Safari mobile */
-#projects.reveal-section {
-  opacity: 1;
-  transform: none;
+/* ========= BOTÃO DE MENU (MOBILE) ========= */
+.nav-toggle {
+  display: none; /* só aparece no mobile (ver @media abaixo) */
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-soft);
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--accent-strong);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle span + span {
+  margin-top: 4px;
+}
+
+/* estado "X" quando o menu está aberto */
+body.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+body.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+body.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+/* ================== PAGINAÇÃO LATERAL DAS SEÇÕES ================== */
+
+.section-pagination {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 900; /* abaixo do header (1000), acima do conteúdo */
+}
+
+.section-pagination button {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: rgba(148, 163, 184, 0.6);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.section-pagination button:hover {
+  background: var(--accent);
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(209, 175, 110, 0.7);
+}
+
+.section-pagination button.active {
+  background: var(--accent-strong);
+  transform: scale(1.25);
+  box-shadow: 0 0 14px rgba(209, 175, 110, 0.9);
+}
+
+/* Esconde no mobile para não poluir a tela pequena */
+@media (max-width: 720px) {
+  .section-pagination {
+    display: none;
+  }
+}
