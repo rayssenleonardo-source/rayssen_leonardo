@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,30 +17,57 @@
     />
 
     <title>Rayssen Leonardo | Designer Gráfico</title>
-  </head>
-  <body>
-    <header>
-      <div id="navbar">
-        <ul>
-          <a href="#welcome-section"><li>Home</li></a>
-        </ul>
-        <ul>
-          <a href="#sobre"><li>Sobre</li></a>
-        </ul>
-        <ul>
-          <a href="#skills"><li>Skills</li></a>
-        </ul>
-        <ul>
-          <a href="#projects"><li>Projetos</li></a>
-        </ul>
-        <ul>
-          <a href="#contact"><li>Contato</li></a>
-        </ul>
-      </div>
-    </header>
+  <header>
+  <!-- Botão de menu (mobile) -->
+  <button
+    class="menu-toggle"
+    type="button"
+    aria-label="Abrir menu de navegação"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
+  <div id="navbar">
+    <ul>
+      <a href="#welcome-section"><li>Home</li></a>
+    </ul>
+    <ul>
+      <a href="#sobre"><li>Sobre</li></a>
+    </ul>
+    <!-- link Processo de Trabalho -->
+    <ul>
+      <a href="#processo"><li>Processo</li></a>
+    </ul>
+    <ul>
+      <a href="#skills"><li>Skills</li></a>
+    </ul>
+    <!-- link Como posso ajudar -->
+    <ul>
+      <a href="#servicos"><li>Serviços</li></a>
+    </ul>
+    <ul>
+      <a href="#projects"><li>Projetos</li></a>
+    </ul>
+    <ul>
+      <a href="#contact"><li>Contato</li></a>
+    </ul>
+
+    <!-- Botão de toggle de tema (continua dentro do navbar) -->
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label="Alternar tema claro/escuro"
+    >
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+</header>
+
+    
     <main>
-      <!-- HERO -->
+      <!-- HERO (sem reveal-section) -->
       <section id="welcome-section">
         <div class="welcome-hero">
           <!-- FOTO / AVATAR -->
@@ -70,7 +97,7 @@
       <hr />
 
       <!-- SOBRE -->
-      <section id="sobre">
+      <section id="sobre" class="reveal-section">
         <div class="sobre-div">
           <h1>Sobre Mim</h1>
           <p>
@@ -92,8 +119,27 @@
 
       <hr />
 
+      <!-- FORMAÇÃO (AGORA LOGO APÓS SOBRE MIM) -->
+      <section id="formacao" class="reveal-section">
+        <h2>Formação</h2>
+        <div class="education-grid">
+          <div class="edu-card">
+            <h3>Graduação em Design Gráfico</h3>
+            <p>
+              Ênfase em criação, layout e projetos gráficos digitais e
+              impressos.
+            </p>
+            <p>
+              <strong>Faculdade Anhanguera</strong> | Conclusão: 2023
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
       <!-- PROCESSO -->
-      <section id="processo">
+      <section id="processo" class="reveal-section">
         <div class="process-inner">
           <h2>Processo de Trabalho</h2>
           <p class="process-subtitle">
@@ -101,6 +147,11 @@
             definidas para garantir coerência visual, alinhamento com o cliente
             e aplicação prática da marca.
           </p>
+
+          <!-- NOVO BOTÃO – LEVA AOS PROJETOS -->
+          <div class="button-div">
+            <a href="#projects">Ver cases na prática</a>
+          </div>
 
           <div class="process-grid">
             <article class="process-card">
@@ -157,7 +208,11 @@
       <hr />
 
       <!-- EXPERIÊNCIA -->
-      <section id="experiencia" style="color: #efefef; padding: 50px 20px;">
+      <section
+        id="experiencia"
+        class="reveal-section"
+        style="padding: 50px 20px;"
+      >
         <h2
           style="
             text-align: center;
@@ -219,27 +274,8 @@
 
       <hr />
 
-      <!-- FORMAÇÃO -->
-      <section id="formacao">
-        <h2>Formação</h2>
-        <div class="education-grid">
-          <div class="edu-card">
-            <h3>Graduação em Design Gráfico</h3>
-            <p>
-              Ênfase em criação, layout e projetos gráficos digitais e
-              impressos.
-            </p>
-            <p>
-              <strong>Faculdade Anhanguera</strong> | Conclusão: 2023
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <hr />
-
       <!-- SKILLS / SOFTWARES -->
-      <section id="skills">
+      <section id="skills" class="reveal-section">
         <h2>Softwares</h2>
         <div class="skills-grid">
           <div class="skill-card">
@@ -292,12 +328,17 @@
       <hr />
 
       <!-- SERVIÇOS -->
-      <section id="servicos" class="services-section">
+      <section id="servicos" class="services-section reveal-section">
         <h2>Como posso ajudar</h2>
         <p class="services-subtitle">
           Do conceito à aplicação final: crio identidades visuais completas,
           materiais de apoio e peças para o dia a dia da sua marca.
         </p>
+
+        <!-- NOVO BOTÃO – LEVA PARA CONTATO -->
+        <div class="button-div">
+          <a href="#contact">Falar sobre um projeto</a>
+        </div>
 
         <div class="services-grid">
           <div class="service-card">
@@ -369,7 +410,7 @@
       <hr />
 
       <!-- PROJETOS -->
-      <section id="projects">
+      <section id="projects" class="reveal-section">
         <h2>Projetos</h2>
         <p class="subtitle">Identidades visuais &amp; sistemas de marca</p>
 
@@ -583,7 +624,7 @@
       </section>
 
       <!-- CONTATO -->
-      <section id="contact">
+      <section id="contact" class="reveal-section">
         <div class="contact-header">
           <h3>Vamos conversar?</h3>
           <p>Estou disponível para colaborações e novas oportunidades.</p>
@@ -628,7 +669,19 @@
       <h4>Desenvolvido por Rayssen Leonardo Carvalho Braga &copy; 2025</h4>
     </footer>
 
+        <!-- Paginação lateral das seções -->
+    <div class="section-pagination">
+      <button type="button" data-target="welcome-section" class="active" aria-label="Ir para Home"></button>
+      <button type="button" data-target="sobre" aria-label="Ir para Sobre mim"></button>
+      <button type="button" data-target="formacao" aria-label="Ir para Formação"></button>
+      <button type="button" data-target="processo" aria-label="Ir para Processo de trabalho"></button>
+      <button type="button" data-target="experiencia" aria-label="Ir para Experiência profissional"></button>
+      <button type="button" data-target="skills" aria-label="Ir para Softwares"></button>
+      <button type="button" data-target="servicos" aria-label="Ir para Como posso ajudar"></button>
+      <button type="button" data-target="projects" aria-label="Ir para Projetos"></button>
+      <button type="button" data-target="contact" aria-label="Ir para Contato"></button>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
-
