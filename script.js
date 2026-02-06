@@ -228,13 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scale: 0.85
     });
 
-    // Ticker de tecnologias
-    sr.reveal('.tech-ticker-wrapper', { 
-      delay: 900,
-      origin: 'bottom',
-      distance: '30px'
-    });
-
     // Seções gerais
     sr.reveal('.sobre-div', { 
       delay: 200,
