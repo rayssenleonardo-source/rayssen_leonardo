@@ -51,9 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ================== HERO AO CARREGAR ================== */
   const hero = document.querySelector('#welcome-section .welcome-hero');
   if (hero) {
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       hero.classList.add('hero-enter');
-     /* ================== PAGINAÇÃO LATERAL DAS SEÇÕES ================== */
+    }, 100);
+  }
+
+  /* ================== PAGINAÇÃO LATERAL DAS SEÇÕES ================== */
   const paginationDots = document.querySelectorAll('.section-pagination button');
   const scrollSections = document.querySelectorAll('section[id]');
 
@@ -86,14 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       },
       {
-        threshold: 0.4
+        threshold: 0.5,
+        rootMargin: '-20% 0px -20% 0px'
       }
     );
 
     scrollSections.forEach((sec) => pagObserver.observe(sec));
-  }
-
-    });
   }
 
   /* ================== REVEAL DAS SEÇÕES (ENTRA E SOME) ================== */
@@ -115,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       },
       {
-        threshold: 0.2
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
       }
     );
 
@@ -173,4 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  /* ================== SMOOTH SCROLL PARA TODOS OS LINKS ÂNCORA ================== */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
 });
