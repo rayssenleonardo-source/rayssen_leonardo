@@ -191,4 +191,146 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* ================== SCROLL REVEAL (ANIMAÇÕES AO ROLAR) ================== */
+  if (typeof ScrollReveal !== 'undefined') {
+    const sr = ScrollReveal({
+      origin: 'bottom',
+      distance: '60px',
+      duration: 1000,
+      delay: 200,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      reset: false,
+      mobile: true
+    });
+
+    // Hero Section
+    sr.reveal('.welcome-text h1', { 
+      delay: 300,
+      origin: 'left',
+      distance: '80px'
+    });
+    
+    sr.reveal('.welcome-text p', { 
+      delay: 500 
+    });
+    
+    sr.reveal('.button-div', { 
+      delay: 700,
+      origin: 'bottom',
+      distance: '40px'
+    });
+    
+    sr.reveal('.welcome-photo', { 
+      delay: 400,
+      origin: 'right',
+      distance: '80px',
+      scale: 0.85
+    });
+
+    // Ticker de tecnologias
+    sr.reveal('.tech-ticker-wrapper', { 
+      delay: 900,
+      origin: 'bottom',
+      distance: '30px'
+    });
+
+    // Seções gerais
+    sr.reveal('.sobre-div', { 
+      delay: 200,
+      scale: 0.95
+    });
+
+    sr.reveal('#formacao h2', { 
+      delay: 200 
+    });
+    
+    sr.reveal('.edu-card', { 
+      delay: 300,
+      interval: 200
+    });
+
+    // Processo
+    sr.reveal('#processo h2', { 
+      delay: 200 
+    });
+    
+    sr.reveal('.process-subtitle', { 
+      delay: 300 
+    });
+    
+    sr.reveal('.process-card', { 
+      delay: 400,
+      interval: 150,
+      origin: 'bottom',
+      distance: '50px'
+    });
+
+    // Experiência
+    sr.reveal('#experiencia h2', { 
+      delay: 200 
+    });
+    
+    sr.reveal('.job-card', { 
+      delay: 300,
+      interval: 200,
+      origin: 'left',
+      distance: '60px'
+    });
+
+    // Skills
+    sr.reveal('#skills h2', { 
+      delay: 200 
+    });
+    
+    sr.reveal('.skill-card', { 
+      delay: 300,
+      interval: 100,
+      scale: 0.9
+    });
+
+    // Serviços
+    sr.reveal('.services-section h2', { 
+      delay: 200 
+    });
+    
+    sr.reveal('.services-subtitle', { 
+      delay: 300 
+    });
+    
+    sr.reveal('.service-card', { 
+      delay: 400,
+      interval: 150,
+      origin: 'bottom',
+      distance: '50px'
+    });
+
+    // Projetos
+    sr.reveal('#projects h2', { 
+      delay: 200 
+    });
+    
+    sr.reveal('.subtitle', { 
+      delay: 300 
+    });
+    
+    sr.reveal('.project-card', { 
+      delay: 400,
+      interval: 150,
+      origin: 'bottom',
+      distance: '60px',
+      scale: 0.95
+    });
+
+    // Contato
+    sr.reveal('.contact-header', { 
+      delay: 200,
+      origin: 'top'
+    });
+    
+    sr.reveal('#contact-link', { 
+      delay: 400,
+      scale: 0.8
+    });
+  }
 });
