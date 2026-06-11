@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Envolve uma <section> e aplica a classe `is-visible` quando ela entra na
-// viewport (e remove ao sair), reproduzindo o reveal por scroll do original.
+// Envolve uma <section> e aplica a classe `is-visible` na primeira vez que
+// ela entra na viewport. A revelação é definitiva (não some mais ao rolar),
+// evitando que a seção "pule" e conflite com as animações de cada card.
 export default function RevealSection({ id, className = '', children, ...rest }) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +18,12 @@ export default function RevealSection({ id, className = '', children, ...rest })
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => setIsVisible(entry.isIntersecting));
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
       },
       {
         threshold: 0.15,
