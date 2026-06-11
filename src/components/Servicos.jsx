@@ -6,8 +6,9 @@ export default function Servicos() {
     <RevealSection id="servicos" className="services-section">
       <h2>Como posso ajudar</h2>
       <p className="services-subtitle">
-        Do conceito à aplicação final: crio identidades visuais completas,
-        materiais de apoio e peças para o dia a dia da sua marca.
+        Do conceito visual à solução digital: crio marcas, interfaces, páginas
+        frontend, landing pages e automações para tornar processos mais claros,
+        bonitos e eficientes.
       </p>
 
       <div className="button-div">

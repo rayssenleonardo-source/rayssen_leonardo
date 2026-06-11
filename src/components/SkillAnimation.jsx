@@ -82,12 +82,106 @@ function AfterEffects() {
   );
 }
 
+function Figma() {
+  return (
+    <svg className="skill-anim skill-anim--figma" viewBox="0 0 72 72" aria-hidden="true">
+      <circle className="fill-dot d1" cx="30" cy="18" r="7" />
+      <circle className="fill-dot d2" cx="42" cy="18" r="7" />
+      <circle className="fill-dot d3" cx="30" cy="32" r="7" />
+      <circle className="fill-dot d4" cx="42" cy="32" r="7" />
+      <circle className="fill-dot d5" cx="30" cy="46" r="7" />
+      <path className="draw" pathLength="1" d="M30 25 L30 39 M42 25 L42 39 M30 32 L42 32" />
+    </svg>
+  );
+}
+
+function Code() {
+  return (
+    <svg className="skill-anim skill-anim--code" viewBox="0 0 72 72" aria-hidden="true">
+      <path className="draw" pathLength="1" d="M26 20 L12 36 L26 52" />
+      <path className="draw" pathLength="1" d="M46 20 L60 36 L46 52" />
+      <line className="draw" pathLength="1" x1="39" y1="18" x2="33" y2="54" />
+      <line className="draw code-line c1" pathLength="1" x1="27" y1="60" x2="45" y2="60" />
+    </svg>
+  );
+}
+
+function ReactOrbit() {
+  return (
+    <svg className="skill-anim skill-anim--react" viewBox="0 0 72 72" aria-hidden="true">
+      <ellipse className="draw" pathLength="1" cx="36" cy="36" rx="25" ry="10" />
+      <ellipse className="draw" pathLength="1" cx="36" cy="36" rx="25" ry="10" transform="rotate(60 36 36)" />
+      <ellipse className="draw" pathLength="1" cx="36" cy="36" rx="25" ry="10" transform="rotate(-60 36 36)" />
+      <circle className="fill-dot d2" cx="36" cy="36" r="4" />
+    </svg>
+  );
+}
+
+function Workflow() {
+  return (
+    <svg className="skill-anim skill-anim--workflow" viewBox="0 0 72 72" aria-hidden="true">
+      <rect className="draw" pathLength="1" x="10" y="14" width="18" height="14" rx="4" />
+      <rect className="draw" pathLength="1" x="44" y="29" width="18" height="14" rx="4" />
+      <rect className="draw" pathLength="1" x="10" y="44" width="18" height="14" rx="4" />
+      <path className="draw" pathLength="1" d="M28 21 C40 21 36 36 44 36 M28 51 C40 51 36 36 44 36" />
+      <circle className="fill-dot d3" cx="53" cy="36" r="3" />
+    </svg>
+  );
+}
+
+function GitFlow() {
+  return (
+    <svg className="skill-anim skill-anim--git" viewBox="0 0 72 72" aria-hidden="true">
+      <path className="draw" pathLength="1" d="M24 14 L24 58" />
+      <path className="draw" pathLength="1" d="M24 28 C42 28 48 36 48 48" />
+      <circle className="fill-dot d1" cx="24" cy="14" r="5" />
+      <circle className="fill-dot d2" cx="24" cy="58" r="5" />
+      <circle className="fill-dot d3" cx="48" cy="48" r="5" />
+    </svg>
+  );
+}
+
+function ApiPlug() {
+  return (
+    <svg className="skill-anim skill-anim--api" viewBox="0 0 72 72" aria-hidden="true">
+      <path className="draw" pathLength="1" d="M16 36 L28 36" />
+      <path className="draw" pathLength="1" d="M44 36 L56 36" />
+      <path className="draw" pathLength="1" d="M28 24 L28 48 L44 48 L44 24 Z" />
+      <line className="draw" pathLength="1" x1="32" y1="18" x2="32" y2="24" />
+      <line className="draw" pathLength="1" x1="40" y1="18" x2="40" y2="24" />
+      <circle className="fill-dot d2" cx="36" cy="36" r="3" />
+    </svg>
+  );
+}
+
+function Network() {
+  return (
+    <svg className="skill-anim skill-anim--network" viewBox="0 0 72 72" aria-hidden="true">
+      <path className="draw" pathLength="1" d="M36 18 L18 48 M36 18 L54 48 M18 48 L54 48" />
+      <circle className="fill-dot d1" cx="36" cy="18" r="5" />
+      <circle className="fill-dot d2" cx="18" cy="48" r="5" />
+      <circle className="fill-dot d3" cx="54" cy="48" r="5" />
+    </svg>
+  );
+}
+
 const VARIANTS = {
   photoshop: Photoshop,
   illustrator: Illustrator,
   indesign: InDesign,
   premiere: Premiere,
   aftereffects: AfterEffects,
+  figma: Figma,
+  web: Code,
+  javascript: Code,
+  typescript: Code,
+  node: Code,
+  python: Code,
+  react: ReactOrbit,
+  n8n: Workflow,
+  git: GitFlow,
+  api: ApiPlug,
+  network: Network,
 };
 
 export default function SkillAnimation({ variant }) {

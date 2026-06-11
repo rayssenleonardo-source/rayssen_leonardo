@@ -40,6 +40,7 @@ export default function App() {
     sr.reveal('.sobre-div', { delay: 200, scale: 0.95 });
 
     sr.reveal('#formacao h2', { delay: 200 });
+    sr.reveal('.education-section-title', { delay: 260, interval: 120 });
     sr.reveal('.edu-card', { delay: 300, interval: 200 });
 
     sr.reveal('#processo h2', { delay: 200 });
@@ -50,6 +51,8 @@ export default function App() {
     sr.reveal('.job-card', { delay: 300, interval: 200, origin: 'left', distance: '60px' });
 
     sr.reveal('#skills h2', { delay: 200 });
+    sr.reveal('.skills-lead', { delay: 260 });
+    sr.reveal('.skills-group-title', { delay: 300, interval: 120 });
     sr.reveal('.skill-card', { delay: 300, interval: 100, scale: 0.9 });
 
     sr.reveal('.services-section h2', { delay: 200 });

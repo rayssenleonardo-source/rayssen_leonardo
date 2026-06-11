@@ -498,18 +498,43 @@ header {
 #skills h2 {
   color: var(--text-main);
   font-size: 2.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 16px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.skills-lead {
+  max-width: 760px;
+  margin: 0 auto 46px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.skills-group {
+  max-width: 1180px;
+  margin: 0 auto 48px;
+}
+
+.skills-group:last-child {
+  margin-bottom: 0;
+}
+
+.skills-group-title {
+  margin: 0 0 24px;
+  color: var(--accent);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .skills-grid {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 28px;
-  max-width: 1100px;
+  gap: 22px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -517,8 +542,9 @@ header {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 16px;
-  width: 180px;
-  padding: 28px 22px;
+  width: 220px;
+  min-height: 246px;
+  padding: 26px 20px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -529,6 +555,11 @@ header {
   box-shadow: 0 16px 35px rgba(15, 23, 42, 0.9);
   position: relative;
   overflow: hidden;
+}
+
+.skill-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .skill-card::before {
@@ -570,12 +601,63 @@ header {
   transform: scale(1.1) translateY(-4px);
 }
 
-.skill-card h3 {
+.skill-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-strong);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--accent-soft);
+  border-radius: 14px;
+  background: rgba(209, 175, 110, 0.08);
+}
+
+.skill-symbol i {
+  font-size: 2.35rem;
+}
+
+.skill-card h3,
+.skill-card h4 {
   margin: 8px 0 0 0;
   font-size: 1.05rem;
   color: var(--text-main);
   text-align: center;
   line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.skill-card p {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  #skills {
+    padding: 64px 18px;
+  }
+
+  .skills-lead {
+    margin-bottom: 36px;
+    font-size: 0.98rem;
+  }
+
+  .skills-group {
+    margin-bottom: 40px;
+  }
+
+  .skills-grid {
+    gap: 18px;
+  }
+
+  .skill-card {
+    width: min(100%, 320px);
+    min-height: 0;
+  }
 }
 
 /* ================== PROJETOS – CASES DE IDENTIDADE ================== */
@@ -1158,10 +1240,22 @@ body[data-theme='light'] .job-card:hover {
 
 #formacao h2 {
   font-size: 2.4rem;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-main);
+}
+
+.education-section-title {
+  margin: 0 0 22px;
+  color: var(--accent);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.education-section-title--spaced {
+  margin-top: 42px;
 }
 
 .education-grid {
@@ -1170,6 +1264,14 @@ body[data-theme='light'] .job-card:hover {
   gap: 24px;
   flex-wrap: wrap;
   max-width: 900px;
+  margin: 0 auto;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
@@ -1216,6 +1318,26 @@ body[data-theme='light'] .job-card:hover {
   font-weight: 600;
 }
 
+.certification-card {
+  min-width: 0;
+  max-width: none;
+  padding: 20px 18px;
+}
+
+.certification-card h3 {
+  font-size: 1.08rem;
+}
+
+.certification-meta {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 600px) {
   #formacao {
     padding: 40px 16px 50px;
@@ -1223,6 +1345,9 @@ body[data-theme='light'] .job-card:hover {
   .edu-card {
     width: 100%;
     max-width: 100%;
+  }
+  .certifications-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1274,22 +1399,22 @@ body[data-theme='light'] .job-card:hover {
 }
 
 .services-subtitle {
-  max-width: 720px;
+  max-width: 780px;
   margin: 0 auto 40px;
   color: var(--text-muted);
   font-size: 0.98rem;
   line-height: 1.7;
 }
 
-  .services-grid {
+.services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
-  max-width: 1200px;   /* um pouco maior para caber os 4 cards */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Desktop: força os 4 cards na mesma linha */
+/* Desktop: mantém linhas equilibradas quando houver mais serviços. */
 @media (min-width: 1100px) {
   .services-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1399,6 +1524,11 @@ body[data-theme="light"] #formacao h2 {
   color: #111827;
 }
 
+:root[data-theme="light"] .education-section-title,
+body[data-theme="light"] .education-section-title {
+  color: #92400e;
+}
+
 /* Card de formação em tema claro */
 :root[data-theme="light"] .edu-card,
 body[data-theme="light"] .edu-card {
@@ -1426,6 +1556,11 @@ body[data-theme="light"] .edu-card p {
 :root[data-theme="light"] .edu-card p strong,
 body[data-theme="light"] .edu-card p strong {
   color: #111827;
+}
+
+:root[data-theme="light"] .certification-meta,
+body[data-theme="light"] .certification-meta {
+  color: #92400e;
 }
 
 /* ================== AJUSTE TEMA CLARO – TAGS DOS PROJETOS ================== */
@@ -1771,7 +1906,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
 .skill-anim line,
 .skill-anim rect,
 .skill-anim polygon,
-.skill-anim circle {
+.skill-anim circle,
+.skill-anim ellipse {
   fill: none;
   stroke: var(--accent-strong);
   stroke-width: 2;
@@ -1804,6 +1940,38 @@ body.nav-open .nav-toggle span:nth-child(3) {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+.skill-anim .fill-dot {
+  fill: var(--accent-strong);
+  stroke: none;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.skill-card:hover .skill-anim .fill-dot {
+  animation: skill-pop 0.32s ease forwards;
+}
+
+.skill-card:hover .skill-anim .d1 {
+  animation-delay: 0.08s;
+}
+
+.skill-card:hover .skill-anim .d2 {
+  animation-delay: 0.22s;
+}
+
+.skill-card:hover .skill-anim .d3 {
+  animation-delay: 0.36s;
+}
+
+.skill-card:hover .skill-anim .d4 {
+  animation-delay: 0.5s;
+}
+
+.skill-card:hover .skill-anim .d5 {
+  animation-delay: 0.64s;
 }
 
 /* ---------- Photoshop: câmera tirando uma foto ---------- */

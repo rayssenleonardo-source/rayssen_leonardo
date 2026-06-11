@@ -16,6 +16,8 @@ import thumbZentraq from '../assets/img/thumb-zentraq.png';
 export const typingPhrases = [
   'Identidade Visual',
   'Design Gráfico',
+  'Desenvolvimento Web',
+  'Automação de Processos',
   'Edição de Vídeo',
   'Motion Design',
   'Direção de Arte',
@@ -26,7 +28,7 @@ export const navLinks = [
   { id: 'welcome-section', label: 'Home' },
   { id: 'sobre', label: 'Sobre' },
   { id: 'processo', label: 'Processo' },
-  { id: 'skills', label: 'Skills' },
+  { id: 'skills', label: 'Ferramentas' },
   { id: 'servicos', label: 'Serviços' },
   { id: 'projects', label: 'Projetos' },
   { id: 'contact', label: 'Contato' },
@@ -39,7 +41,7 @@ export const paginationSections = [
   { id: 'formacao', label: 'Ir para Formação' },
   { id: 'processo', label: 'Ir para Processo de trabalho' },
   { id: 'experiencia', label: 'Ir para Experiência profissional' },
-  { id: 'skills', label: 'Ir para Softwares' },
+  { id: 'skills', label: 'Ir para Ferramentas' },
   { id: 'servicos', label: 'Ir para Como posso ajudar' },
   { id: 'projects', label: 'Ir para Projetos' },
   { id: 'contact', label: 'Ir para Contato' },
@@ -51,7 +53,57 @@ export const educationItems = [
     description:
       'Ênfase em criação, layout e projetos gráficos digitais e impressos.',
     institution: 'Faculdade Anhanguera',
-    conclusion: '2023',
+    period: '2021 - 2023',
+  },
+];
+
+export const certificationItems = [
+  {
+    title: 'Desenvolvimento Web',
+    institution: 'Alura',
+    period: '2025 - 2026',
+    description: 'Base para construção de páginas, interfaces e aplicações web.',
+  },
+  {
+    title: 'Automação de Processos com N8N',
+    institution: 'Udemy',
+    period: '2025 - 2026',
+    description: 'Criação de fluxos automatizados e integrações entre ferramentas.',
+  },
+  {
+    title: 'JavaScript Moderno (ES6+)',
+    institution: 'Alura',
+    period: '2025 - 2026',
+    description: 'Lógica, interatividade e recursos modernos da linguagem.',
+  },
+  {
+    title: 'React.js e TypeScript',
+    institution: 'Alura',
+    period: '2025 - 2026',
+    description: 'Componentização, tipagem e organização de interfaces React.',
+  },
+  {
+    title: 'Python para Automação',
+    period: '2025 - 2026',
+    description: 'Scripts para automatizar tarefas e apoiar rotinas operacionais.',
+  },
+  {
+    title: 'Node.js e APIs REST',
+    institution: 'Alura',
+    period: '2025 - 2026',
+    description: 'Fundamentos de backend, rotas e comunicação entre sistemas.',
+  },
+  {
+    title: 'Rede TCP/IP',
+    institution: 'Udemy',
+    period: '2024 - 2025',
+    description: 'Conceitos de redes aplicados à infraestrutura e suporte técnico.',
+  },
+  {
+    title: 'Defenser',
+    institution: 'Intelbras',
+    period: '2026',
+    description: 'Capacitação ligada a soluções de segurança eletrônica.',
   },
 ];
 
@@ -106,12 +158,118 @@ export const jobs = [
   },
 ];
 
-export const skills = [
-  { key: 'photoshop', name: 'Adobe Photoshop', icon: psIcon },
-  { key: 'illustrator', name: 'Adobe Illustrator', icon: aiIcon },
-  { key: 'indesign', name: 'Adobe InDesign', icon: idIcon },
-  { key: 'premiere', name: 'Adobe Premiere Pro', icon: prIcon },
-  { key: 'aftereffects', name: 'Adobe After Effects', icon: aeIcon },
+export const skillGroups = [
+  {
+    title: 'Design & Adobe',
+    items: [
+      {
+        key: 'photoshop',
+        name: 'Adobe Photoshop',
+        icon: psIcon,
+        description: 'Tratamento de imagens, mockups e peças digitais.',
+      },
+      {
+        key: 'illustrator',
+        name: 'Adobe Illustrator',
+        icon: aiIcon,
+        description: 'Criação vetorial, logotipos e sistemas de marca.',
+      },
+      {
+        key: 'indesign',
+        name: 'Adobe InDesign',
+        icon: idIcon,
+        description: 'Diagramação de propostas, relatórios e materiais institucionais.',
+      },
+      {
+        key: 'premiere',
+        name: 'Adobe Premiere Pro',
+        icon: prIcon,
+        description: 'Edição de vídeos institucionais e conteúdos curtos.',
+      },
+      {
+        key: 'aftereffects',
+        name: 'Adobe After Effects',
+        icon: aeIcon,
+        description: 'Motion design e animações simples para marcas.',
+      },
+      {
+        key: 'figma',
+        name: 'Figma',
+        iconClass: 'fab fa-figma',
+        description: 'Layouts, protótipos e organização de interfaces.',
+      },
+    ],
+  },
+  {
+    title: 'Desenvolvimento Web',
+    items: [
+      {
+        key: 'web',
+        name: 'HTML5 & CSS3',
+        iconClass: 'fas fa-code',
+        description: 'Estrutura, responsividade e acabamento visual de interfaces.',
+      },
+      {
+        key: 'javascript',
+        name: 'JavaScript (ES6+)',
+        lettermark: 'JS',
+        description: 'Interações, lógica de interface e evolução de páginas.',
+      },
+      {
+        key: 'typescript',
+        name: 'TypeScript',
+        lettermark: 'TS',
+        description: 'Tipagem e organização de código em projetos React.',
+      },
+      {
+        key: 'react',
+        name: 'React.js',
+        iconClass: 'fab fa-react',
+        description: 'Componentização e criação de experiências web.',
+      },
+      {
+        key: 'node',
+        name: 'Node.js',
+        iconClass: 'fab fa-node-js',
+        description: 'Base para APIs REST e rotinas de backend.',
+      },
+      {
+        key: 'python',
+        name: 'Python',
+        iconClass: 'fab fa-python',
+        description: 'Automação de tarefas e scripts de apoio.',
+      },
+    ],
+  },
+  {
+    title: 'Automação & Infraestrutura',
+    items: [
+      {
+        key: 'n8n',
+        name: 'N8N',
+        lettermark: 'N8N',
+        description: 'Fluxos automatizados e integrações entre sistemas.',
+      },
+      {
+        key: 'git',
+        name: 'Git & GitHub',
+        iconClass: 'fab fa-github',
+        description: 'Versionamento, colaboração e publicação de projetos.',
+      },
+      {
+        key: 'api',
+        name: 'APIs REST',
+        iconClass: 'fas fa-plug',
+        description: 'Integrações e melhoria de processos internos.',
+      },
+      {
+        key: 'network',
+        name: 'Redes TCP/IP',
+        iconClass: 'fas fa-network-wired',
+        description: 'Base técnica para infraestrutura e segurança eletrônica.',
+      },
+    ],
+  },
 ];
 
 export const services = [
@@ -157,6 +315,50 @@ export const services = [
       'Vídeos institucionais curtos',
       'Animações leves de logo e textos',
       'Ajustes de ritmo, corte e trilha',
+    ],
+  },
+  {
+    icon: 'fas fa-rocket',
+    title: 'Landing Pages',
+    description:
+      'Páginas objetivas para apresentar serviços, captar contatos e valorizar campanhas digitais.',
+    items: [
+      'Estrutura de seções e narrativa visual',
+      'Layout responsivo em HTML, CSS e React',
+      'Chamadas para ação e formulário de contato',
+    ],
+  },
+  {
+    icon: 'fas fa-laptop-code',
+    title: 'Estilização Frontend',
+    description:
+      'Refino visual de páginas existentes, melhorando hierarquia, responsividade e experiência de uso.',
+    items: [
+      'Ajustes de layout, cores e tipografia',
+      'Componentes React com acabamento visual',
+      'Correções de responsividade e estados de interação',
+    ],
+  },
+  {
+    icon: 'fas fa-robot',
+    title: 'Projetos de Automação',
+    description:
+      'Mapeamento e criação de fluxos para reduzir tarefas repetitivas e organizar rotinas internas.',
+    items: [
+      'Automações com N8N e scripts Python',
+      'Organização de etapas e gatilhos de processo',
+      'Apoio a rotinas comerciais e administrativas',
+    ],
+  },
+  {
+    icon: 'fas fa-plug',
+    title: 'Integrações & APIs',
+    description:
+      'Conexão entre ferramentas, formulários e sistemas para centralizar dados e agilizar operações.',
+    items: [
+      'Consumo e organização de APIs REST',
+      'Integração de formulários com fluxos internos',
+      'Documentação simples para uso e manutenção',
     ],
   },
 ];

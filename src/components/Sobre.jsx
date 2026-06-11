@@ -19,6 +19,12 @@ export default function Sobre() {
           conhecimentos técnicos e visão criativa para oferecer soluções
           eficientes e bem estruturadas.
         </p>
+        <p>
+          Em paralelo, venho expandindo minha atuação para desenvolvimento web
+          e automação de processos, trabalhando com HTML, CSS, JavaScript,
+          TypeScript, Python, React, Node.js, Git/GitHub, APIs REST e fluxos
+          com N8N.
+        </p>
       </div>
     </RevealSection>
   );
